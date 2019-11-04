@@ -14,10 +14,15 @@ let testCasesOne: [(Double, Double)] = [
     (input: 99, expectedOutput: 198)
 ]
 
-//for (input, expectedOutput) in testCasesOne {
-//    let output = double(input)
-//    assert(output == expectedOutput, "Was expecting \(expectedOutput) for input \(input), but got \(output)")
-//}
+func double(input: Double) -> Double {
+    let result = input * 2
+    return result
+}
+
+for (input, expectedOutput) in testCasesOne {
+  let output = 2 * input
+  assert(output == expectedOutput, "Was expecting \(expectedOutput) for input \(input), but got \(output)")
+}
 
 
 
@@ -34,10 +39,18 @@ let testCasesTwo: [(Double, Double, Double)] = [
     (inputOne: 2.3, inputTwo: 2.03, expectedOutput: 2.03)
 ]
 
-//for (inputOne, inputTwo, expectedOutput) in testCasesTwo {
-//    let output = smallest(of: inputOne, and: inputTwo)
-//    assert(output == expectedOutput, "Was expecting \(expectedOutput) for inputs \(inputOne) and \(inputTwo) but got \(output)")
-//}
+func smallest(of inputOne: Double, and inputTwo: Double) -> Double {
+    if inputOne - inputTwo >= 0 {
+        return inputTwo
+    } else {
+        return inputOne
+    }
+}
+
+for (inputOne, inputTwo, expectedOutput) in testCasesTwo {
+    let output = smallest(of: inputOne, and: inputTwo)
+    assert(output == expectedOutput, "Was expecting \(expectedOutput) for inputs \(inputOne) and \(inputTwo) but got \(output)")
+}
 
 // Question Three
 
@@ -51,11 +64,17 @@ let testCasesThree: [([Double], Double)] = [
     (input: [0,0,0,0,0,0,0,0,0,0], expectedOutput: 0),
     (input: [-4,-59,-348,-34,-4], expectedOutput: -348),
 ]
+func smallestValue(in input: [Double]) -> Double {
+    for _ in input {
+        return input.min() ?? 0
+    }
+    return input.min() ?? 0
+}
 
-//for (input, expectedOutput) in testCasesThree {
-//    let output = smallestValue(in: input)
-//    assert(output == expectedOutput, "Was expecting \(expectedOutput) for input \(input), but got \(output)")
-//}
+for (input, expectedOutput) in testCasesThree {
+    let output = smallestValue(in: input)
+    assert(output == expectedOutput, "Was expecting \(expectedOutput) for input \(input), but got \(output)")
+}
 
 
 // Question Four
@@ -70,11 +89,19 @@ let testCasesFour: [(Character, String, Int)] = [
     (inputOne: " ", inputTwo: "Now with some spaces", expectedOutput: 3),
     (inputOne: "E", inputTwo: "cApItAlS aRe DiFfErEnT", expectedOutput: 2),
 ]
-
-//for (inputOne, inputTwo, expectedOutput) in testCasesFour {
-//    let output = occurrances(of: inputOne, in: inputTwo)
-//    assert(output == expectedOutput, "Was expecting \(expectedOutput) for inputs \(inputOne) and \(inputTwo) but got \(output)")
-//}
+func occurrances(of inputOne: Character, in inputTwo: String) -> Int {
+     var output = 0
+    for char in inputTwo {
+        if char == inputOne {
+            output += 1
+        }
+    }
+    return output
+}
+for (inputOne, inputTwo, expectedOutput) in testCasesFour {
+    let output = occurrances(of: inputOne, in: inputTwo)
+    assert(output == expectedOutput, "Was expecting \(expectedOutput) for inputs \(inputOne) and \(inputTwo) but got \(output)")
+}
 
 
 // Question Five
@@ -89,9 +116,13 @@ let testCasesFive: [([Int?], [Int])] = [
     (input: [nil], expectedOutput: []),
     (input: [], expectedOutput: []),
 ]
+func removeNils(from input: [Int?]) -> [Int] {
+    return input.compactMap { ($0) }
+}
 
-//for (input, expectedOutput) in testCasesFive {
-//    let output = removeNils(from: input)
-//    assert(output == expectedOutput, "Was expecting \(expectedOutput) for input \(input), but got \(output)")
-//}
+
+for (input, expectedOutput) in testCasesFive {
+    let output = removeNils(from: input)
+    assert(output == expectedOutput, "Was expecting \(expectedOutput) for input \(input), but got \(output)")
+}
 
